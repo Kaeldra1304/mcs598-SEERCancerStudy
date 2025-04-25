@@ -42,7 +42,7 @@ TYPE_TUNE_MLPEMB_1ENC = 6
 
 # LOGISTIC REGRESSION 
 if batch_type_to_run == TYPE_TUNE_LOGREG :
-    output_dir = "Tuning_LogR_" + data_type
+    output_dir = "TUNING/Tuning_LogR_" + data_type
     oneHotEnc_flag = False
     model = "LogR"
     logrc_list = [0.01, 0.1, 1.0, 10.0, 100.0, 1000.0, 10000.0, 100000.0, 1000000.0, 10000000.0, 100000000.0, 1000000000.0, 10000000000.0]
@@ -54,7 +54,7 @@ if batch_type_to_run == TYPE_TUNE_LOGREG :
     
 # LOGISTIC REGRESSION W/ 1-N ENCODING
 if batch_type_to_run == TYPE_TUNE_LOGREG_1ENC :
-    output_dir = "Tuning_LogR_Enc_" + data_type
+    output_dir = "TUNING/Tuning_LogR_Enc_" + data_type
     oneHotEnc_flag = True
     model = "LogR"
     logrc_list = [0.01, 0.1, 1.0, 10.0, 100.0, 1000.0, 10000.0, 100000.0, 1000000.0, 10000000.0, 100000000.0, 1000000000.0, 10000000000.0]
@@ -66,7 +66,7 @@ if batch_type_to_run == TYPE_TUNE_LOGREG_1ENC :
 
 # MLP
 if batch_type_to_run == TYPE_TUNE_MLP :
-    output_dir = "Tuning_MLP_" + data_type
+    output_dir = "TUNING/Tuning_MLP_" + data_type
     oneHotEnc_flag = False
     model = "MLP"
     logrc_list = [1.0]
@@ -78,7 +78,7 @@ if batch_type_to_run == TYPE_TUNE_MLP :
 
 # MLP W/ 1-N ENCODING
 if batch_type_to_run == TYPE_TUNE_MLP_1ENC :
-    output_dir = "Tuning_MLP_Enc_" + data_type
+    output_dir = "TUNING/Tuning_MLP_Enc_" + data_type
     oneHotEnc_flag = True
     model = "MLP"
     logrc_list = [1.0]
@@ -90,7 +90,7 @@ if batch_type_to_run == TYPE_TUNE_MLP_1ENC :
 
 # MLP EMBEDDING W/ 1-N ENCODING
 if batch_type_to_run == TYPE_TUNE_MLPEMB_1ENC :
-    output_dir = "Tuning_MLPEmb_Enc_" + data_type
+    output_dir = "TUNING/Tuning_MLPEmb_Enc_" + data_type
     oneHotEnc_flag = True
     model = "MLPEmb"
     logrc_list = [1.0]
