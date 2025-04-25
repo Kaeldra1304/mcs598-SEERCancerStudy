@@ -44,7 +44,7 @@ $ python sas_matrix_formatter.py --matrix \cohort_2025\data_Breast-noDetroit-all
 $ python sas_matrix_formatter.py --matrix \cohort_2025\data_Lung-noDetroit-allLA-ASCII_250411-0923\matrix.txt --specs --matrix \cohort_2025\data_Lung-noDetroit-allLA-ASCII_250411-0923\matrix.sas
 ```
 4) **Model Tuning**: Re-tune models if desired. In commandline, run command below. 
-		<ins>WARNING</ins>: Can be very time consuming. See report for runtime analysis.
+		<ins>WARNING</ins>: Can be very time consuming. See _results/hyperparameters.xlsx for runtime analysis.
 ```
 $ python model_tuner.py --type 2 --task 12 --data breast
 ```
