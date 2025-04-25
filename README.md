@@ -37,16 +37,16 @@ This repository contains code and results from replicating the experimental setu
 3) **Data Coversion**: Re-convert data if desired. 
 - In commandline, run command below. Copy "INCIDENCES.txt", "CASES.csv", and "matrix_reformat.sas" in "\cohort_2025\data_Breast-noDetroit-allLA-ASCII_250406-1620" to "\data_breast".
 ```
-$ python sas_matrix_formatter.py --matrix \cohort_2025\data_Breast-noDetroit-allLA-ASCII_250406-1620\matrix.txt --specs --matrix \cohort_2025\data_Breast-noDetroit-allLA-ASCII_250406-1620\matrix.sas
+python sas_matrix_formatter.py --matrix cohort_2025\data_Breast-noDetroit-allLA-ASCII_250406-1620\matrix.txt --specs cohort_2025\data_Breast-noDetroit-allLA-ASCII_250406-1620\matrix.sas
 ```
 - In commandline, run command below. Copy "INCIDENCES.txt", "CASES.csv", and "matrix_reformat.sas" in "\cohort_2025\data_Lung-noDetroit-allLA-ASCII_250411-0923" to "\data_lung".
 ```
-$ python sas_matrix_formatter.py --matrix \cohort_2025\data_Lung-noDetroit-allLA-ASCII_250411-0923\matrix.txt --specs --matrix \cohort_2025\data_Lung-noDetroit-allLA-ASCII_250411-0923\matrix.sas
+python sas_matrix_formatter.py --matrix cohort_2025\data_Lung-noDetroit-allLA-ASCII_250411-0923\matrix.txt --specs cohort_2025\data_Lung-noDetroit-allLA-ASCII_250411-0923\matrix.sas
 ```
 4) **Model Tuning**: Re-tune models if desired. In commandline, run command below. 
 		<ins>WARNING</ins>: Can be very time consuming. See _results/hyperparameters.xlsx for runtime analysis.
 ```
-$ python model_tuner.py --type 2 --task 12 --data breast
+python model_tuner.py --type 2 --task 12 --data breast
 ```
 	Commandline Arguments:
 	  "--type", 
@@ -63,28 +63,28 @@ $ python model_tuner.py --type 2 --task 12 --data breast
 		lung = lung and bronchus data
 5) **Analyze Tuning Results**: Combine all validation results and review csv. In command line, run command below. Open combined_results.csv. Sort by folder, model, survival duration, then auc+f1 to determine best model for each model/cancer type/survival duration. The best hyperparameters should be entered into run_final_models.py.
 ```
-$ python collect_cluster_results_csv.py \TUNING
+python collect_cluster_results_csv.py TUNING
 ```
 6) **Final Model Execution**: Run final models using best tuning parameters. In command line, run command below. WARNING: 24 models ~2 hours
 ```
-$ python run_final_models.py
+python run_final_models.py
 ```
 7) **Analyze Final Model Results**: Combine all testing results and review csv. In command line, run command below. Open combined_results.csv to review test results.
 ```
-$ python collect_cluster_results_csv.py \FINAL_MODELS
+python collect_cluster_results_csv.py FINAL_MODELS
 ```
 8) **Attribute Importance Analysis**: Review the top 10 attributes ranked on the sum of relative importance over all models. In command line, run command below. Four graphs will be displayed, one for each cancer type/survival duration. Top 10 attribute lists will be printed to the console.
 ```
-$ python attribute_importance_graphs.py
+python attribute_importance_graphs.py
 ```
 9) **Perform Socioeconomic Feature Analysis**: Analyze the impact of socioeconomic features on cancer survivability.
 - To analyze the impact on breast cancer, run command below in commandline. Two graphs will be displayed, one for each socioeconomic feature.
 ```
-$ python feature_analysis.py --spec data_breast/matrix_reformat.sas --data data_breast/INCIDENCES.txt"
+python feature_analysis.py --spec data_breast/matrix_reformat.sas --data data_breast/INCIDENCES.txt"
 ```
 - To analyze the impact on lung and bronchus cancer, run command below in commandline. Two graphs will be displayed, one for each socioeconomic feature.
 ```
-$ python feature_analysis.py --spec data_lung/matrix_reformat.sas --data data_lung/INCIDENCES.txt"
+python feature_analysis.py --spec data_lung/matrix_reformat.sas --data data_lung/INCIDENCES.txt"
 ```
 
 <ins>Additional Functionality</ins>

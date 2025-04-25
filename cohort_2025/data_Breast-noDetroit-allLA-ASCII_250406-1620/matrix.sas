@@ -2274,46 +2274,6 @@ proc format;
     88 = "Unknown/missing/no match (Alaska or Hawaii - Entire State)"
     99 = "Unknown/missing/no match/Not 1990-2022"
     ;
-  value RaceandoriginrecodeNHWNHBNHAIANf
-    1 = "Non-Hispanic White"
-    2 = "Non-Hispanic Black"
-    3 = "Non-Hispanic American Indian/Alaska Native"
-    4 = "Non-Hispanic Asian or Pacific Islander"
-    5 = "Hispanic (All Races)"
-    9 = "Non-Hispanic Unknown Race"
-    ;
-  value Year_of_follow_up_recodef
-    200 = "2000"
-    201 = "2001"
-    202 = "2002"
-    203 = "2003"
-    204 = "2004"
-    205 = "2005"
-    206 = "2006"
-    207 = "2007"
-    208 = "2008"
-    209 = "2009"
-    210 = "2010"
-    211 = "2011"
-    212 = "2012"
-    213 = "2013"
-    214 = "2014"
-    215 = "2015"
-    216 = "2016"
-    217 = "2017"
-    218 = "2018"
-    219 = "2019"
-    220 = "2020"
-    221 = "2021"
-    ;
-  value End_Calc_Vital_Status_Adjustedf
-    0 = "Alive"
-    1 = "Dead"
-    2 = "Dead (other)"
-    3 = "Untraced"
-    4 = "Withdrawn"
-    5 = "Unknown"
-    ;
 run;
 
 data casedat;
@@ -2441,10 +2401,6 @@ data casedat;
     Totalnumberofbenignborderlinetu
     Medianhouseholdincomeinflationa
     Rural_Urban_Continuum_Code
-    RaceandoriginrecodeNHWNHBNHAIAN
-    Year_of_follow_up_recode
-    End_Calc_Vital_Status_Adjusted
-    Number_of_Intervals_Calculated
     ;
   label Patient_ID = "Patient ID"
     Marital_status_at_diagnosis = "Marital status at diagnosis"
@@ -2564,10 +2520,6 @@ data casedat;
     Totalnumberofbenignborderlinetu = "Total number of benign/borderline tumors for patient"
     Medianhouseholdincomeinflationa = "Median household income inflation adj to 2022"
     Rural_Urban_Continuum_Code = "Rural-Urban Continuum Code"
-    RaceandoriginrecodeNHWNHBNHAIAN = "Race and origin recode (NHW, NHB, NHAIAN, NHAPI, Hispanic)"
-    Year_of_follow_up_recode = "Year of follow-up recode"
-    End_Calc_Vital_Status_Adjusted = "End Calc Vital Status (Adjusted)"
-    Number_of_Intervals_Calculated = "Number of Intervals (Calculated)"
     ;
   format Patient_ID Patient_IDf.
     Marital_status_at_diagnosis Marital_status_at_diagnosisf.
@@ -2687,9 +2639,6 @@ data casedat;
     Totalnumberofbenignborderlinetu Totalnumberofbenignborderlinetuf.
     Medianhouseholdincomeinflationa Medianhouseholdincomeinflationaf.
     Rural_Urban_Continuum_Code Rural_Urban_Continuum_Codef.
-    RaceandoriginrecodeNHWNHBNHAIAN RaceandoriginrecodeNHWNHBNHAIANf.
-    Year_of_follow_up_recode Year_of_follow_up_recodef.
-    End_Calc_Vital_Status_Adjusted End_Calc_Vital_Status_Adjustedf.
     ;
 run;
 
