@@ -24,49 +24,68 @@ This repository contains code and results from replicating the experimental setu
 
 <ins>Results Structure:</ins>
 - **/[date_time]_exeriment-0/arguments.txt**: Commandline arguments for main.py call.
-- **/[date_time]_exeriment-0/results_importance.txt**: Relative importance of each attribute in experiment. Only present if "--importance" argument supplied. 
+- **/[date_time]_exeriment-0/results_importance.txt**: Relative importance of each attribute in experiment. Used in attribute importance analysis. Only present if "--importance" argument supplied. 
 - **/[date_time]_exeriment-0/results_test.txt**: AUC, F1, and ACC for test dataset. Used in final model testing. Only present if "--test" argument supplied.
 - **/[date_time]_exeriment-0/results_validate.txt**: AUC, F1, and ACC for validation dataset. Used in model tuning. 
 
+<ins>Execution Steps:</ins>
+1) **Access Source Code**: Download and unzip source code on PC.
+2) **Setup Environment**: Ensure requirements listed in requirements.txt are met, installing with pip as needed. Python version: 3.10.11.
+3) **Data Coversion**: Re-convert data if desired. 
+In commandline, run command below. Copy "INCIDENCES.txt", "CASES.csv", and "matrix_reformat.sas" in "\cohort_2025\data_Breast-noDetroit-allLA-ASCII_250406-1620" to "\data_breast".
+```
+$ python sas_matrix_formatter.py --matrix \cohort_2025\data_Breast-noDetroit-allLA-ASCII_250406-1620\matrix.txt --specs --matrix \cohort_2025\data_Breast-noDetroit-allLA-ASCII_250406-1620\matrix.sas
+```
+In commandline, run command below. Copy "INCIDENCES.txt", "CASES.csv", and "matrix_reformat.sas" in "\cohort_2025\data_Lung-noDetroit-allLA-ASCII_250411-0923" to "\data_lung".
+```
+$ python sas_matrix_formatter.py --matrix \cohort_2025\data_Lung-noDetroit-allLA-ASCII_250411-0923\matrix.txt --specs --matrix \cohort_2025\data_Lung-noDetroit-allLA-ASCII_250411-0923\matrix.sas
+```
+4) **Model Tuning**: Re-tune models if desired. In commandline, run command below. 
+WARNING: Can be very time consuming. See report for runtime analysis.
+```
+$ python model_tuner.py --type 2 --task 12 --data breast
+```
+	Commandline Arguments:
+		"--type", 
+		  2 = Logistic Regression (LOG REG), 13 combinations ~5 minutes
+		  3 = Logistic Regression with 1-N Encoding (LOG REG 1-N ENC), 13 combinations ~10 minutes
+		  4 = Multilayer Perceptron (MLP), 288 combinations ~30 hours
+		  5 = Multilayer Perceptron with 1-N Encoding (MLP 1-N ENC), 288 combinations ~36 hours
+		  6 = Embedded Multilayer Perceptron (MLPEmb 1-N ENC), 36 or 54 combinations ~9 or ~13 hours
+		"--task",
+		  12 = 1-yr survival prediction
+		  60 = 5-yr survival prediction
+		"--data"
+		  breast = breast cancer data
+		  lung = lung and bronchus data
+5) **Analyze Tuning Results**: Combine all validation results and review csv. In commandline, run command below. Open combined_results.csv. Sort by folder, model, survial duration, then auc+f1 to determine best model for each model/cancer type/survial duration. The best hyperparameters should be entered into run_final_models.py.
+```
+$ python collect_cluster_results_csv.py \TUNING
+```
+6) **Final Model Execution**: Run final models using best tuning parameters. In commandline, run command below. WARNING: 24 models ~2 hours
+```
+$ python run_final_models.py
+```
+7) **Analyze Final Model Results**: Combine all testing results and review csv. In commandline, run command below. Open combined_results.csv to review test results.
+```
+$ python collect_cluster_results_csv.py \FINAL_MODELS
+```
+8) **Attribute Importance Analysis**: Review the top 10 attributes ranked on the sum of relative importance over all models. In commandline, run command below. Four graphs will be displayed, one for each cancer type/survival duration. Top 10 attribute lists will be printed to the console.
+```
+$ python attribute_importance_graphs.py
+```
+9) **Perform Socioeconomic Feature Analysis**: Analyze the impact of socioeconomic features on cancer survivability.
+To analyze the impact on breast cancer, run command below in commandline. Two graphs will be displayed, one for each socioeconomic feature.
+```
+$ python feature_analysis.py --spec data_breast/matrix_reformat.sas --data data_breast/INCIDENCES.txt"
+```
+To analyze the impact on lung and bronchus cancer, run command below in commandline. Two graphs will be displayed, one for each socioeconomic feature.
+```
+$ python feature_analysis.py --spec data_lung/matrix_reformat.sas --data data_lung/INCIDENCES.txt"
+```
 
-!!! OLD PAPER README.MD !!!
-Repository overview:
-- **/bin/cluster**: Slurm submission scripts for all parameter tuning experiments on the HPC cluster.
-- **/cohort**: SEER*Stat session files to reproduce cohort selections.
-- **/example**: Randomly generated SEER example to test the software without sensitive data.
-- **/example/CASES.csv**: Example case export. To reproduce experiments, this should be generated for each cohort by loading the provided session files into SEER*Stat, executing the case listing, and exporting it via Matrix->Export->Results as Text File... with "CSV Defaults".
-- **/example/INCIDENCES.txt**: Example SEER incidences. To reproduce experiments, this should contain all incidences provided by SEER 1973-2014 data (November 2016 submission) in ASCII format (e.g. by merging them into a single file). The according ASCII data files are available from SEER on request.
-- **/lib**: Python classes and functions used for the experiments.
-- **main.py**: Main routine to perform the experiments.
-- **requirements.txt**: Python dependencies (can be installed with pip, e.g. in a virtual environment).
-
-
-To execute main.py and reproduce our experiments Python3 (we used version 3.5.2) is necessary and all dependencies in requirements.txt must be satisfied. The easiest way would be to setup an according [virtual environment and to install requirements with pip](https://docs.python.org/3/tutorial/venv.html).
-
-The option -h gives an overview of all command line arguments. Note that this code provides some additional functionality such as SVM models and survival regression that were not used for the paper's experiments.
-
+Additonal functionality, which was not used for replication of the paper, is available by directly calling the main.py script. 
+Run the command below with commandline argument "-h" to get an overview of all command line arguments, including SVM models and survival regression.
 ```
 $ python main.py -h
-```
-
-An experiment with the randomly generated examples and an MLP model can be performed as shown below. This will produce a folder in the current directory containing results and a plot for the AUC score.
-
-```
-$ python main.py --incidences example/INCIDENCES.txt --specifications example/read.seer.research.nov2016.sas --cases example/CASES.csv --task survival60 --oneHotEncoding --model MLP --mlpLayers 2 --mlpWidth 20 --mlpEpochs 1 --mlpDropout 0.1 --importance --plotData --plotResults
-[...]
-Read ASCII data files.
-Raw data: (10000; 133) cases and attributes
-Filtered SEER*Stat cases from ASCII: (5000; 133) cases and attributes
-Remove irrelevant, combined, post-diagnosis, and treatment attributes: (5000; 960) cases and attributes
-Create target label indicating cancer survival for survival60: (2831; 959) cases and attributes
-Remove inputs with constant values: (2831; 925) cases and attributes
-Data:  (2831, 925) -> x:(2831, 924), y:(2831,)
-Train: x:(2264, 924), y:(2264,)
-Valid: x:(283, 924), y:(283,)
-Test:  x:(284, 924), y:(284,)
-
-Train on 2264 samples, validate on 283 samples
-Epoch 1/1
- - 1s - loss: 0.4241 - acc: 0.8913 - val_loss: 0.2623 - val_acc: 0.9293
-Validation results: auc = 0.48878326996197724, f1 = 0.9633699633699635, acc = 0.9293286219081273
 ```
