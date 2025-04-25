@@ -1,7 +1,9 @@
 # mcs598-SEERCancerStudy
 Replication of the Paper: Reproducible Survival Prediction with SEER Cancer Data
 
-This repository contains code and results from replicating the experimental setup outlined in in _Reproducible Survival Prediction with SEER Cancer Data_ submitted to the Machine Learning for Healthcare 2018 conference. (https://proceedings.mlr.press/v85/hegselmann18a/hegselmann18a.pdf, https://proceedings.mlr.press/v85/hegselmann18a/hegselmann18a-supp.pdf)
+This repository contains code and results from replicating the experimental setup outlined in in _Reproducible Survival Prediction with SEER Cancer Data_ submitted to the Machine Learning for Healthcare 2018 conference. 
+- https://proceedings.mlr.press/v85/hegselmann18a/hegselmann18a.pdf, 
+- https://proceedings.mlr.press/v85/hegselmann18a/hegselmann18a-supp.pdf
 
 ## Repository Overview
 <ins>Folder Structure:</ins>
