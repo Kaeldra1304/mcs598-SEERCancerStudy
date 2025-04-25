@@ -17,6 +17,12 @@ This repository contains code and results from replicating the experimental setu
 - **main.py**: Main routine to perform the experiments.
 - **requirements.txt**: Python dependencies (can be installed with pip, e.g. in a virtual environment).
 
+<ins>Results Structure:</ins>
+- **/[date_time]_exeriment-0/arguments.txt**: Commandline arguments for main.py call.
+- **/[date_time]_exeriment-0/results_importance.txt**: Relative importance of each attribute in experiment. Used in attribute importance analysis. Only present if "--importance" argument supplied. 
+- **/[date_time]_exeriment-0/results_test.txt**: AUC, F1, and ACC for test dataset. Used in final model testing. Only present if "--test" argument supplied.
+- **/[date_time]_exeriment-0/results_validate.txt**: AUC, F1, and ACC for validation dataset. Used in model tuning. 
+
 <ins>Additional Scripts:</ins>
 - **attribute_importance_graphs.py**: Script to analyze the relative importance of attributes in the final models. 
 - **collect_cluster_results_csv.py**: Script to parse all validation and test results in a folder structure and write to a csv file.
@@ -24,12 +30,6 @@ This repository contains code and results from replicating the experimental setu
 - **model_tuner.py**: Script to run model tuning. The model which is tuned depends on the provided commandline arguments.
 - **run_final_models.py**: Script to run all final models.
 - **sas_matrix_formatter.py**: Script to convert SEER*Stat case listing data exports into experiment's input data format.
-
-<ins>Results Structure:</ins>
-- **/[date_time]_exeriment-0/arguments.txt**: Commandline arguments for main.py call.
-- **/[date_time]_exeriment-0/results_importance.txt**: Relative importance of each attribute in experiment. Used in attribute importance analysis. Only present if "--importance" argument supplied. 
-- **/[date_time]_exeriment-0/results_test.txt**: AUC, F1, and ACC for test dataset. Used in final model testing. Only present if "--test" argument supplied.
-- **/[date_time]_exeriment-0/results_validate.txt**: AUC, F1, and ACC for validation dataset. Used in model tuning. 
 
 ## Execution Steps:
 1) **Access Source Code**: Download and unzip source code on PC.
