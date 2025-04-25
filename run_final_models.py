@@ -2,17 +2,18 @@ import subprocess
 import sys
 import os
     
-specs_path = "data/matrix_reformat.sas"
+breast_specs = "data_breast/matrix_reformat.sas"
 breast_data = "data_breast/INCIDENCES.txt"
 breast_cases = "data_breast/CASES.csv"
+lung_specs = "data_lung/matrix_reformat.sas"
 lung_data = "data_lung/INCIDENCES.txt"
 lung_cases = "data_lung/CASES.csv"
 
 # create common parameter arrays
 #header_array = ["python", "main.py", "--output", "FINAL_MODELS"]
 header_array = ["python", "main.py"]
-files_breast_array = ["--incidences", breast_data, "--specifications", specs_path, "--cases", breast_cases]
-files_lung_array = ["--incidences", lung_data, "--specifications", specs_path, "--cases", lung_cases]
+files_breast_array = ["--incidences", breast_data, "--specifications", breast_specs, "--cases", breast_cases]
+files_lung_array = ["--incidences", lung_data, "--specifications", lung_specs, "--cases", lung_cases]
 
 # initialize list of all processes to run
 subprocesses_list = list()

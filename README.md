@@ -35,11 +35,11 @@ This repository contains code and results from replicating the experimental setu
 1) **Access Source Code**: Download and unzip source code on PC.
 2) **Setup Environment**: Ensure requirements listed in requirements.txt are met, installing with pip as needed. Python version: 3.10.11.
 3) **Data Coversion**: Re-convert data if desired. 
-- In commandline, run command below. Copy "INCIDENCES.txt", "CASES.csv", and "matrix_reformat.sas" in "\cohort_2025\data_Breast-noDetroit-allLA-ASCII_250406-1620" to "\data_breast".
+- In commandline, run command below. Move "INCIDENCES.txt", "CASES.csv", and "matrix_reformat.sas" in "\cohort_2025\data_Breast-noDetroit-allLA-ASCII_250406-1620" to "\data_breast".
 ```
 python sas_matrix_formatter.py --matrix cohort_2025\data_Breast-noDetroit-allLA-ASCII_250406-1620\matrix.txt --specs cohort_2025\data_Breast-noDetroit-allLA-ASCII_250406-1620\matrix.sas
 ```
-- In commandline, run command below. Copy "INCIDENCES.txt", "CASES.csv", and "matrix_reformat.sas" in "\cohort_2025\data_Lung-noDetroit-allLA-ASCII_250411-0923" to "\data_lung".
+- In commandline, run command below. Move "INCIDENCES.txt", "CASES.csv", and "matrix_reformat.sas" in "\cohort_2025\data_Lung-noDetroit-allLA-ASCII_250411-0923" to "\data_lung".
 ```
 python sas_matrix_formatter.py --matrix cohort_2025\data_Lung-noDetroit-allLA-ASCII_250411-0923\matrix.txt --specs cohort_2025\data_Lung-noDetroit-allLA-ASCII_250411-0923\matrix.sas
 ```
@@ -78,11 +78,11 @@ python collect_cluster_results_csv.py FINAL_MODELS
 python attribute_importance_graphs.py
 ```
 9) **Perform Socioeconomic Feature Analysis**: Analyze the impact of socioeconomic features on cancer survivability.
-- To analyze the impact on breast cancer, run command below in commandline. Two graphs will be displayed, one for each socioeconomic feature.
+- To analyze the impact on breast cancer, run command below in commandline. Two graphs will be displayed, one for each socioeconomic feature. Correlation scores will be printed to the console.
 ```
 python feature_analysis.py --spec data_breast/matrix_reformat.sas --data data_breast/INCIDENCES.txt"
 ```
-- To analyze the impact on lung and bronchus cancer, run command below in commandline. Two graphs will be displayed, one for each socioeconomic feature.
+- To analyze the impact on lung and bronchus cancer, run command below in commandline. Two graphs will be displayed, one for each socioeconomic feature. Correlation scores will be printed to the console.
 ```
 python feature_analysis.py --spec data_lung/matrix_reformat.sas --data data_lung/INCIDENCES.txt"
 ```

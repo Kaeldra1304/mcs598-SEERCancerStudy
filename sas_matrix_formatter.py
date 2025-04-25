@@ -108,7 +108,7 @@ def sas_formatter(matrix_sas_file_path, insert_yr_birth_dx = True, debug = False
                 yr_birth_dx_inserted = True
 
     # now for writing format
-    with open(matrix_sas_file_path.replace(".sas", "_reformat.sas"), 'w') as matrix_format_file:
+    with open("matrix_reformat.sas", 'w') as matrix_format_file:
         matrix_format_file.write(filename_in_file) # has newline already appended
         matrix_format_file.write("\n")
         matrix_format_file.write("data in;" + "\n")

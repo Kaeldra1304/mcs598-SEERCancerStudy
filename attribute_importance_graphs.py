@@ -46,8 +46,10 @@ for c_type in cancer_types :
 
         # find top ten attributes based on their sum for all models
         top_10_attributes = list(dict(sorted(attribute_sum_dic.items(), key=lambda item: item[1], reverse=True)[:10]).keys())
+        print()
         print("Top 10 SEER Attributes,", c_type, "Cancer", str(int(task/12))+"-yr Survival")
-        print(top_10_attributes)
+        for i in range(len(top_10_attributes)) :
+            print(str(i+1) + ")", top_10_attributes[i])
         
         # create numpy arrays for graphing
         data_arrays_dict = dict() # key: model name, value: len 10 array of floats 
