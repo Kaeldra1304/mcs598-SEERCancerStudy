@@ -7,6 +7,7 @@ This repository contains code and results from replicating the experimental setu
 
 ## Repository Overview
 <ins>Folder Structure:</ins>
+- **/_paper**: Final paper, presentation slides, and video presentation.
 - **/_results**: Files used to perform manual steps and analysis of experimental results. attribute_table.xlsx and feature_mapping_table.pdf were used in creating the feature map between the 2016 database and the 2023 database. hyperparameters.xlsx was used for analysis of the tuning models. results_final.xlsx was used for analysis of the final models.
 - **/_results/FINAL_MODELS**: Raw experimental results for 24 final models and combined_results.csv file which contains all validation and testing results.
 - **/_results/TUNING**: Raw experimental results for 2,570 tuning models. Each of the 12 top-level folders contains a combined_results.csv file with the validation results for that model and cancer type. Survival durations are combined.
